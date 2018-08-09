@@ -1,0 +1,16 @@
+﻿
+//Possible additions/alterations to the project
+-> Add email, first name, organization, phone, and address to the searching function.
+	- Drop down menu for what the user is searching for
+-> Add scrollbar to the contact addition/creation form. 
+-> Save *only* when the user wants to - or add an undo function.
+-> Check for duplicates?
+-> Change the storing to a database instead of a location file
+-> Change serialization after a contact is changed/saved
+-> Add validation for input
+-> Custom sorting (sorting within a table by clicking on differe columns)
+-> File-based import/export of contacts
+
+//Stretch goals:
+-> Emailing contacts
+-> Importing/Exporting contacts from a microsoft-based email

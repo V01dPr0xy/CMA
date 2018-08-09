@@ -1,0 +1,19 @@
+﻿<Application x:Class="ContactManager.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:ContactManager"
+             StartupUri="Shell.xaml"
+             xmlns:Presenters="clr-namespace:ContactManager.Presenters"
+             xmlns:Model="clr-namespace:ContactManager.Model"
+             >
+    <Application.Resources>
+        <ResourceDictionary>
+            <ObjectDataProvider x:Key="stateNames" MethodName="GetNames" ObjectType="{x:Type Model:States}" />
+            <Presenters:PhoneConverter x:Key="phoneConverter"/>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Resources\ColorsAndBrushes.xaml"/>
+                <ResourceDictionary Source="Resources\DefaultStyles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>
