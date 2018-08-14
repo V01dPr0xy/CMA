@@ -12,7 +12,7 @@ namespace ContactManager.Model
         private string _state;
         private string _zip;
 
-        private string City
+        public string City
         {
             get { return _city; }
             set

@@ -59,6 +59,7 @@
     </ApplicationDefinition>
     <Compile Include="Model\Address.cs" />
     <Compile Include="Model\Contact.cs" />
+    <Compile Include="Model\ContactFields.cs" />
     <Compile Include="Model\ContactRepository.cs" />
     <Compile Include="Model\States.cs" />
     <Compile Include="Notifier.cs" />
@@ -141,7 +142,9 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Addons.txt" />

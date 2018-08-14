@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ContactManager.Model;
 using ContactManager.Presenters;
 
 namespace ContactManager.UserControls
@@ -33,7 +34,7 @@ namespace ContactManager.UserControls
 
         private void SearchText_Changed(object sender, TextChangedEventArgs e)
         {
-            Presenter.Search(searchText.Text);
+            Presenter.Search(searchText.Text, searchType.SelectedIndex);
         }
     }
 }

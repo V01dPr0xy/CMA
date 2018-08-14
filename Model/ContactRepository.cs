@@ -36,16 +36,36 @@ namespace ContactManager.Model
             Serialize();
         }
 
-        public List<Contact> FindByLookup(string lookupName)
+        public List<Contact> FindByLookup(string lookup, ContactFields selectedContactField)
         {
-            IEnumerable<Contact> found = 
-                from c in _contactStore
-                where c.LookupName.StartsWith(
-                    lookupName,
-                    StringComparison.OrdinalIgnoreCase)
-                select c;
+            //Switch based upon which enum is passed in that is being searched by.
+            List<Contact> result = new List<Contact>();
 
-            return found.ToList();
+            switch(selectedContactField)
+            {
+                case ContactFields.NAME:
+                    result = _contactStore.Where(c => c.FirstName.StartsWith(lookup) || c.LastName.StartsWith(lookup)).ToList();
+                    break;
+                case ContactFields.PHONENUMBER:
+                    result = _contactStore.Where(c => c.CellPhone.StartsWith(lookup) || c.HomePhone.StartsWith(lookup) || c.OfficePhone.StartsWith(lookup)).ToList();
+                    break;
+                case ContactFields.CITY:
+                    result = _contactStore.Where(c => c.Address.City.StartsWith(lookup)).ToList();
+                    break;
+                case ContactFields.JOB:
+                    result = _contactStore.Where(c => c.JobTitle.StartsWith(lookup)).ToList();
+                    break;
+                case ContactFields.ORGANIZATION:
+                    result = _contactStore.Where(c => c.Organization.StartsWith(lookup)).ToList();
+                    break;
+                case ContactFields.EMAIL:
+                    result = _contactStore.Where(c => c.PrimaryEmail.StartsWith(lookup) || c.SecondaryEmail.StartsWith(lookup)).ToList();
+                    break;
+            }
+
+
+
+            return result;
         }
 
         public List<Contact> FindAll()

@@ -9,16 +9,29 @@ namespace ContactManager.Model
     [Serializable]
     public class Contact : Notifier
     {
-        private Address _address = new Address();
-        private string _cellPhone;
-        private string _firstName;
-        private string _homePhone;
+        //GUID
         private Guid _id = Guid.Empty;
-        private string _imagePath;
-        private string _jobTitle;
-        private string _lastName;
+        
+        //Address
+        private Address _address = new Address();
+
+        //Phone numbers
+        private string _cellPhone;
+        private string _homePhone;
         private string _officePhone;
+
+        //Name
+        private string _firstName;
+        private string _lastName;
+
+        //Image
+        private string _imagePath;
+
+        //Job and organization
+        private string _jobTitle;
         private string _organization;
+
+        //Emails
         private string _primaryEmail;
         private string _secondaryEmail;
 
@@ -137,15 +150,12 @@ namespace ContactManager.Model
             }
         }
 
-        public string LookupName
+        public string FullName
         {
             get { return string.Format("{0}, {1}", _lastName, _firstName); }
         }
 
-        public override string ToString()
-        {
-            return LookupName;
-        }
+        public override string ToString() => FullName;
 
         public override bool Equals(object obj)
         {
