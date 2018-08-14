@@ -42,7 +42,7 @@ namespace ContactManager.Presenters
             return FilterNonNumeric(value as string);
         }
 
-        private static string FilterNonNumeric(string stringToFilter)
+        public static string FilterNonNumeric(string stringToFilter)
         {
             if (string.IsNullOrEmpty(stringToFilter))
                 return string.Empty;

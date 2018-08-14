@@ -13,11 +13,11 @@
             <ComboBox x:Name="searchType" DockPanel.Dock="Right" Width="150">
                 <ComboBoxItem Name="st_0" IsSelected="True">Select item</ComboBoxItem>
                 <ComboBoxItem Name="st_1">Name</ComboBoxItem>
-                <ComboBoxItem Name="st_3">Organization</ComboBoxItem>
-                <ComboBoxItem Name="st_4">Job Title</ComboBoxItem>
-                <ComboBoxItem Name="st_5">City</ComboBoxItem>
-                <ComboBoxItem Name="st_6">Phone Number</ComboBoxItem>
-                <ComboBoxItem Name="st_7">Email</ComboBoxItem>
+                <ComboBoxItem Name="st_2">Organization</ComboBoxItem>
+                <ComboBoxItem Name="st_3">Job Title</ComboBoxItem>
+                <ComboBoxItem Name="st_4">City</ComboBoxItem>
+                <ComboBoxItem Name="st_5">Phone Number</ComboBoxItem>
+                <ComboBoxItem Name="st_6">Email</ComboBoxItem>
             </ComboBox>
             <Label DockPanel.Dock="Right" Content="Search:" FontWeight="Bold" Foreground="White" />
         </DockPanel>
