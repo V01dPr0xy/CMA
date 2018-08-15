@@ -103,11 +103,11 @@ xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
                         <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
                     <Label Content="_Office:" Target="{Binding ElementName=office}" />
-                    <TextBox x:Name="office" Grid.Column="1" Text="{Binding Path=Contact.OfficePhone, Converter={StaticResource phoneConverter}}" />
+                    <TextBox x:Name="office" Grid.Column="1" Text="{Binding Path=Contact.OfficePhone, Converter={StaticResource phoneConverter}}" TextChanged="phoneNumberTextChanged" />
                     <Label Grid.Row="1" Content="_Cell:" Target="{Binding ElementName=cell}" />
-                    <TextBox x:Name="cell" Grid.Row="1" Grid.Column="1" Text="{Binding Path=Contact.CellPhone, Converter={StaticResource phoneConverter}}" />
+                    <TextBox x:Name="cell" Grid.Row="1" Grid.Column="1" Text="{Binding Path=Contact.CellPhone, Converter={StaticResource phoneConverter}}" TextChanged="phoneNumberTextChanged" />
                     <Label Grid.Row="2" Content="_Home:" Target="{Binding ElementName=home}" />
-                    <TextBox x:Name="home" Grid.Row="2" Grid.Column="1" Text="{Binding Path=Contact.HomePhone, Converter={StaticResource phoneConverter}}" />
+                    <TextBox x:Name="home" Grid.Row="2" Grid.Column="1" Text="{Binding Path=Contact.HomePhone, Converter={StaticResource phoneConverter}}" TextChanged="phoneNumberTextChanged" />
                 </Grid>
             </GroupBox>
             <GroupBox BorderBrush="{StaticResource brownBrush}">
@@ -125,10 +125,10 @@ xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
-                    <Label Content="_Primary:" Target="{Binding ElementName=primaryEmail}" />
-                    <TextBox x:Name="primaryEmail" Grid.Column="1" Text="{Binding Contact.PrimaryEmail}" />
-                    <Label Grid.Row="1" Content="S_econdary:" Target="{Binding ElementName=secondaryEmail}" />
-                    <TextBox x:Name="secondaryEmail" Grid.Row="1" Grid.Column="1" Text="{Binding Contact.SecondaryEmail}" />
+                    <Label x:Name="_primary" Content="_Primary:" Target="{Binding ElementName=primaryEmail}" />
+                    <TextBox x:Name="primaryEmail" Grid.Column="1" Text="{Binding Contact.PrimaryEmail}" LostFocus="EmailLostFocus"/>
+                    <Label x:Name="_secondary" Grid.Row="1" Content="S_econdary:" Target="{Binding ElementName=secondaryEmail}" />
+                    <TextBox x:Name="secondaryEmail" Grid.Row="1" Grid.Column="1" Text="{Binding Contact.SecondaryEmail}" LostFocus="EmailLostFocus"/>
                 </Grid>
             </GroupBox>
         </WrapPanel>
