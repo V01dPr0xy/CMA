@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Windows.Forms;
+using ContactManager.Presenters;
 
 namespace ContactManager.Model
 {
@@ -36,6 +37,28 @@ namespace ContactManager.Model
             Serialize();
         }
 
+        public List<Contact> SearchByPhoneNumber(string lookup)
+        {
+            List<Contact> result = new List<Contact>();
+
+            foreach(var c in _contactStore)
+            {
+                if (c.CellPhone != null)
+                    if (c.CellPhone.StartsWith(PhoneConverter.FilterNonNumeric(lookup)))
+                        result.Add(c);
+
+                else if (c.OfficePhone != null)
+                    if (c.OfficePhone.StartsWith(PhoneConverter.FilterNonNumeric(lookup)))
+                        result.Add(c);
+
+                else if (c.HomePhone != null)
+                    if (c.HomePhone.StartsWith(PhoneConverter.FilterNonNumeric(lookup)))
+                        result.Add(c);
+            }
+
+            return result;
+        }
+
         public List<Contact> FindByLookup(string lookup, ContactFields selectedContactField)
         {
             //Switch based upon which enum is passed in that is being searched by.
@@ -47,7 +70,7 @@ namespace ContactManager.Model
                     result = _contactStore.Where(c => c.FirstName.StartsWith(lookup) || c.LastName.StartsWith(lookup)).ToList();
                     break;
                 case ContactFields.PHONENUMBER:
-                    result = _contactStore.Where(c => c.CellPhone.StartsWith(lookup) || c.HomePhone.StartsWith(lookup) || c.OfficePhone.StartsWith(lookup)).ToList();
+                    result = SearchByPhoneNumber(lookup);
                     break;
                 case ContactFields.CITY:
                     result = _contactStore.Where(c => c.Address.City.StartsWith(lookup)).ToList();
@@ -62,8 +85,6 @@ namespace ContactManager.Model
                     result = _contactStore.Where(c => c.PrimaryEmail.StartsWith(lookup) || c.SecondaryEmail.StartsWith(lookup)).ToList();
                     break;
             }
-
-
 
             return result;
         }

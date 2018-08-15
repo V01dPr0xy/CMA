@@ -52,16 +52,16 @@ namespace ContactManager.Presenters
                         selectedContactField = ContactFields.NAME;
                         break;
                     case 2:
-                        selectedContactField = ContactFields.PHONENUMBER;
+                        selectedContactField = ContactFields.ORGANIZATION;
                         break;
                     case 3:
-                        selectedContactField = ContactFields.CITY;
-                        break;
-                    case 4:
                         selectedContactField = ContactFields.JOB;
                         break;
+                    case 4:
+                        selectedContactField = ContactFields.CITY;
+                        break;
                     case 5:
-                        selectedContactField = ContactFields.ORGANIZATION;
+                        selectedContactField = ContactFields.PHONENUMBER;
                         break;
                     case 6:
                         selectedContactField = ContactFields.EMAIL;
