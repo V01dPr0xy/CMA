@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ContactManagerLib.Models;
+using System;
 using System.Linq;
 using System.Collections.Generic;
 using System.IO;
@@ -15,7 +16,6 @@ namespace ContactManager.Model
         public ContactRepository()
         {
             _stateFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "ContactManager.state");
-            //MessageBox.Show(_stateFile);
             Deserialize();
         }
 

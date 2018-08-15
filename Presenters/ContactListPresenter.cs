@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using ContactManager.Views;
 using System.Collections.ObjectModel;
 using ContactManager.Model;
+using ContactManagerLib.Models;
 
 namespace ContactManager.Presenters
 {

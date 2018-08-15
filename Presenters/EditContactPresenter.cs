@@ -1,5 +1,7 @@
 ﻿using ContactManager.Model;
 using ContactManager.Views;
+using ContactManagerLib.Models;
+
 namespace ContactManager.Presenters
 {
     public class EditContactPresenter : PresenterBase<EditContactView>

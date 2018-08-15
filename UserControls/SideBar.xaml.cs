@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using ContactManager.Presenters;
 using ContactManager.Model;
 using System.ComponentModel;
+using ContactManagerLib.Models;
 
 namespace ContactManager.UserControls
 {

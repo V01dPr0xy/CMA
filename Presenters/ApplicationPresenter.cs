@@ -2,6 +2,7 @@ using System;
 using System.Collections.ObjectModel;
 using ContactManager.Model;
 using ContactManager.Views;
+using ContactManagerLib.Models;
 
 namespace ContactManager.Presenters
 {

@@ -1,0 +1,34 @@
+﻿<UserControl x:Class="ContactManager.UserControls.LoginControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ContactManager.UserControls"
+             mc:Ignorable="d">
+    <StackPanel Orientation="Vertical">
+        <StackPanel Orientation="Horizontal">
+            <Label Content="Username:"
+                   Margin="4 2 8 6"
+                   FontSize="12"
+                   FontFamily="TimesNewRoman"/>
+            <TextBox Width="400"
+                     Margin="8 2 4 6"/>
+            <Label x:Name="InvalidUsernameLabel"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <Label Content="Password:"
+                   Margin="4 2 8 6"
+                   FontSize="12"
+                   FontFamily="TimesNewRoman"/>
+            <TextBox Width="400"
+                     Margin="8 2 4 6"/>
+            <Label x:Name="InvalidPasswordLabel"/>
+        </StackPanel>
+        <Button Content="Login"
+                MaxWidth="150"
+                Margin="0 25 0 5"/>
+        <Button Content="Register"
+                MaxWidth="150"
+                Margin="0 5 0 0"/>
+    </StackPanel>
+</UserControl>

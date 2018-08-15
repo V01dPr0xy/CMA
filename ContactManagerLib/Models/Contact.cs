@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ContactManager.Model
+namespace ContactManagerLib.Models
 {
     [Serializable]
     public class Contact : Notifier
@@ -152,6 +152,5 @@ namespace ContactManager.Model
             Contact other = obj as Contact;
             return other != null && other.Id == Id;
         }
-
     }
-    }
+}

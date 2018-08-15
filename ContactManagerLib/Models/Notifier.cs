@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 
-namespace ContactManager
+namespace ContactManagerLib.Models
 {
     [Serializable]
     public abstract class Notifier : INotifyPropertyChanged

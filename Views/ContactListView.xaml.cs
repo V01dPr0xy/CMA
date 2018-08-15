@@ -1,5 +1,6 @@
 ﻿using ContactManager.Model;
 using ContactManager.Presenters;
+using ContactManagerLib.Models;
 using System.Windows;
 using System.Windows.Controls;
 
