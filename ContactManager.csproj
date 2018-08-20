@@ -68,6 +68,8 @@
     <Compile Include="Presenters\EditContactPresenter.cs" />
     <Compile Include="Presenters\PhoneConverter.cs" />
     <Compile Include="Presenters\PresenterBase.cs" />
+    <Compile Include="Presenters\SideBarEmailConverter.cs" />
+    <Compile Include="Presenters\SideBarPhoneConverter.cs" />
     <Compile Include="UserControls\EditContactView.xaml.cs">
       <DependentUpon>EditContactView.xaml</DependentUpon>
     </Compile>

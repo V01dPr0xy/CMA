@@ -6,12 +6,16 @@ using System.Threading.Tasks;
 
 namespace ContactManager.Model
 {
+
+    //Add additional data that is "display phone" which will be set based on the first correct phone number.
+    //This data needs to be "set" based on the phone numbers available in each saved phone number, choosing the first 
+    //valid number to be displayed. The priority order is: Office, Cell, Home.
     [Serializable]
     public class Contact : Notifier
     {
         //GUID
         private Guid _id = Guid.Empty;
-        
+
         //Address
         private Address _address = new Address();
 
@@ -34,6 +38,11 @@ namespace ContactManager.Model
         //Emails
         private string _primaryEmail;
         private string _secondaryEmail;
+
+        public Contact GetContact
+        {
+            get { return this; }
+        }
 
         public Guid Id
         {
@@ -102,6 +111,7 @@ namespace ContactManager.Model
             {
                 _officePhone = value;
                 OnPropertyChanged("OfficePhone");
+                OnPropertyChanged("GetContact");
             }
         }
         public string CellPhone
@@ -111,6 +121,7 @@ namespace ContactManager.Model
             {
                 _cellPhone = value;
                 OnPropertyChanged("CellPhone");
+                OnPropertyChanged("GetContact");
             }
         }
         public string HomePhone
@@ -120,6 +131,7 @@ namespace ContactManager.Model
             {
                 _homePhone = value;
                 OnPropertyChanged("HomePhone");
+                OnPropertyChanged("GetContact");
             }
         }
         public string PrimaryEmail
@@ -129,6 +141,7 @@ namespace ContactManager.Model
             {
                 _primaryEmail = value;
                 OnPropertyChanged("PrimaryEmail");
+                OnPropertyChanged("GetContact");
             }
         }
         public string SecondaryEmail
@@ -138,6 +151,7 @@ namespace ContactManager.Model
             {
                 _secondaryEmail = value;
                 OnPropertyChanged("SecondaryEmail");
+                OnPropertyChanged("GetContact");
             }
         }
         public Address Address

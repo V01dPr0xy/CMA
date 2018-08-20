@@ -37,10 +37,10 @@
                                         <RowDefinition />
                                     </Grid.RowDefinitions>
                                     <TextBlock Grid.ColumnSpan="2" FontWeight="Bold" Text="{Binding FullName}" />
-                                    <TextBlock Grid.Row="1" Text=" Office: " />
-                                    <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Path=OfficePhone, Converter={StaticResource phoneConverter}}"/>
+                                    <TextBlock Grid.Row="1" Text=" Primary Phone: " />
+                                    <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Path=GetContact, Converter={StaticResource sideBarPhoneConverter}}"/>
                                     <TextBlock Grid.Row="2" Text=" Email: " />
-                                    <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding PrimaryEmail}" />
+                                    <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding Path=GetContact, Converter={StaticResource SideBarEmailConverter}}" />
                                 </Grid>
                             </Border>
                             <Button Style="{StaticResource openButton}" />

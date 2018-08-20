@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Data;
 using System.Globalization;
+using ContactManager.Model;
 
 namespace ContactManager.Presenters
 {
@@ -41,7 +42,8 @@ namespace ContactManager.Presenters
         {
             return FilterNonNumeric(value as string);
         }
-
+        //change to check for nulls over empty strings upon database implementation.
+        
         public static string FilterNonNumeric(string stringToFilter)
         {
             if (string.IsNullOrEmpty(stringToFilter))
