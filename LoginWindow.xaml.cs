@@ -1,4 +1,5 @@
 ﻿using ContactManager.UserControls;
+using ContactManagerLib.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,20 +21,41 @@ namespace ContactManager
     /// </summary>
     public partial class LoginWindow : Window
     {
+        private UserData userData;
         public LoginWindow()
         {
             InitializeComponent();
+            userData = new UserData();
+            DataContext = userData;
         }
 
         private void LoginButtonFuction(object sender, RoutedEventArgs e)
         {
 
         }
-        private void RegisterButtonFuction(object sender, RoutedEventArgs e)
+        private void LoginRegisterButtonFuction(object sender, RoutedEventArgs e)
         {
             ControlGrid.Children.RemoveAt(0);
             RegisterControl registerControl = new RegisterControl();
+            registerControl.RegisterEvent = RegisterNewUserButtonFuction;
+            registerControl.CancelEvent = CancelNewUserButtonFuction;
+            registerControl.VerticalAlignment = VerticalAlignment.Center;
+            registerControl.HorizontalAlignment = HorizontalAlignment.Center;
             ControlGrid.Children.Add(registerControl);
+        }
+        private void RegisterNewUserButtonFuction(object sender, RoutedEventArgs e)
+        {
+
+        }
+        private void CancelNewUserButtonFuction(object sender, RoutedEventArgs e)
+        {
+            ControlGrid.Children.RemoveAt(0);
+            LoginControl loginControl = new LoginControl();
+            loginControl.RegisterEvent = LoginRegisterButtonFuction;
+            loginControl.LoginEvent = LoginButtonFuction;
+            loginControl.VerticalAlignment = VerticalAlignment.Center;
+            loginControl.HorizontalAlignment = HorizontalAlignment.Center;
+            ControlGrid.Children.Add(loginControl);
         }
     }
 }

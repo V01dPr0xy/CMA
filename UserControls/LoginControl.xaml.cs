@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ContactManagerLib.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -25,7 +26,6 @@ namespace ContactManager.UserControls
         public LoginControl()
         {
             InitializeComponent();
-            Button tets = new Button();
         }
 
         public RoutedEventHandler RegisterEvent

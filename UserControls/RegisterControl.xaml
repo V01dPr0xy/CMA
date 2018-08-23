@@ -4,9 +4,52 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ContactManager.UserControls"
-             mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <StackPanel>
-            
+             mc:Ignorable="d">
+    <StackPanel Orientation="Vertical">
+        <StackPanel Orientation="Horizontal">
+            <Label Content="Username:"
+                   Margin="4 2 8 6"
+                   FontSize="12"
+                   FontFamily="TimesNewRoman"/>
+            <TextBox x:Name="userNameTextBox" Width="400"
+                     Margin="8 2 4 6"
+                     Text="{Binding Path=userName}"/>
+            <Label x:Name="InvalidUsernameLabel"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <Label Content="Password:"
+                   Margin="4 2 8 6"
+                   FontSize="12"
+                   FontFamily="TimesNewRoman"/>
+            <TextBox x:Name="passswordTextBox" Width="400"
+                     Margin="8 2 4 6"                     
+                     Text="{Binding Path=password}"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <Label Content="Email:"
+                   Margin="4 2 8 6"
+                   FontSize="12"
+                   FontFamily="TimesNewRoman"/>
+            <TextBox x:Name="emailTextBox" Width="400"
+                     Margin="8 2 4 6"                     
+                     Text="{Binding Path=email}"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <Label Content="Phone Number:"
+                   Margin="4 2 8 6"
+                   FontSize="12"
+                   FontFamily="TimesNewRoman"/>
+            <TextBox x:Name="phoneNumberTextBox" Width="400"
+                     Margin="8 2 4 6"
+                     Text="{Binding Path=phoneNumber}"/>
+        </StackPanel>
+        <Button Content="Register"
+                MaxWidth="150"
+                Margin="0 25 0 5"
+                Click="RegisterButtonClick"/>
+        <Button Content="Cancel"
+                MaxWidth="150"
+                Margin="0 5 0 0"
+                Click="CancelButtonClick"/>
     </StackPanel>
 </UserControl>

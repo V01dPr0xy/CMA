@@ -11,8 +11,9 @@
                    Margin="4 2 8 6"
                    FontSize="12"
                    FontFamily="TimesNewRoman"/>
-            <TextBox Width="400"
-                     Margin="8 2 4 6"/>
+            <TextBox x:Name="userNameTextBox" Width="400"
+                     Margin="8 2 4 6"
+                     Text="{Binding Path=userName}"/>
             <Label x:Name="InvalidUsernameLabel"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal">
@@ -20,8 +21,10 @@
                    Margin="4 2 8 6"
                    FontSize="12"
                    FontFamily="TimesNewRoman"/>
-            <TextBox Width="400"
-                     Margin="8 2 4 6"/>
+            <TextBox x:Name="passwordTextBox"
+                     Width="400"
+                     Margin="8 2 4 6"                     
+                     Text="{Binding Path=password}"/>
             <Label x:Name="InvalidPasswordLabel"/>
         </StackPanel>
         <Button Content="Login"

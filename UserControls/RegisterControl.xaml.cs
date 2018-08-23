@@ -20,9 +20,32 @@ namespace ContactManager.UserControls
     /// </summary>
     public partial class RegisterControl : UserControl
     {
+        private RoutedEventHandler registerEvent, cancelEvent;
+
+        public RoutedEventHandler RegisterEvent
+        {
+            get { return registerEvent; }
+            set { registerEvent = value; }
+        }
+
+        public RoutedEventHandler CancelEvent
+        {
+            get { return cancelEvent; }
+            set { cancelEvent = value; }
+        }
+
         public RegisterControl()
         {
             InitializeComponent();
+        }
+        private void RegisterButtonClick(object sender, RoutedEventArgs e)
+        {
+            registerEvent.Invoke(sender, e);
+        }
+
+        private void CancelButtonClick(object sender, RoutedEventArgs e)
+        {
+            cancelEvent.Invoke(sender, e);
         }
     }
 }

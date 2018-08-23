@@ -27,7 +27,7 @@
             <uc:LoginControl VerticalAlignment="Center"
                              HorizontalAlignment="Center"
                              LoginEvent="LoginButtonFuction"
-                             RegisterEvent="RegisterButtonFuction"/>
+                             RegisterEvent="LoginRegisterButtonFuction"/>
         </Grid>
     </DockPanel>
 </Window>

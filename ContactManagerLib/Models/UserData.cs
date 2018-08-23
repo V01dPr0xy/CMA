@@ -10,14 +10,8 @@ namespace ContactManagerLib.Models
     {
         public Guid userId { get; set; }
         public string userName { get; set; }
-        private string password;
+        public string password { get; set; }
         public string phoneNumber { get; set; }
         public string email { get; set; }
-
-        public string Password
-        {
-            get { return password; }
-            set { password = value; }
-        }
     }
 }
