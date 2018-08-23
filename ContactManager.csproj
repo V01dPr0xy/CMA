@@ -61,7 +61,6 @@
     <Compile Include="Model\Contact.cs" />
     <Compile Include="Model\ContactFields.cs" />
     <Compile Include="Model\ContactRepository.cs" />
-    <Compile Include="Model\States.cs" />
     <Compile Include="Notifier.cs" />
     <Compile Include="Presenters\ApplicationPresenter.cs" />
     <Compile Include="Presenters\ContactListPresenter.cs" />
@@ -70,6 +69,7 @@
     <Compile Include="Presenters\PresenterBase.cs" />
     <Compile Include="Presenters\SideBarEmailConverter.cs" />
     <Compile Include="Presenters\SideBarPhoneConverter.cs" />
+    <Compile Include="Presenters\Validation.cs" />
     <Compile Include="UserControls\EditContactView.xaml.cs">
       <DependentUpon>EditContactView.xaml</DependentUpon>
     </Compile>

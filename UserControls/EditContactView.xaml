@@ -78,8 +78,8 @@ xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
                     <TextBox x:Name="line2" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Text="{Binding Contact.Address.Line2}" />
                     <Label Grid.Row="2" Content="Ci_ty:" Target="{Binding ElementName=city}" />
                     <TextBox x:Name="city" Grid.Row="2" Grid.Column="1" Text="{Binding Contact.Address.City}" />
-                    <Label Grid.Row="2" Grid.Column="2" Content="_State:" Target="{Binding ElementName=state}" />
-                    <ComboBox x:Name="state" Grid.Row="2" Grid.Column="3" SelectedItem="{Binding Contact.Address.State}" ItemsSource="{Binding Source={StaticResource stateNames}}"/>
+                    <Label Grid.Row="2" Grid.Column="2" Content="_State/County:" Target="{Binding ElementName=state}" />
+                    <TextBox x:Name="state" Grid.Row="2" Grid.Column="3" Text="{Binding Contact.Address.State}"/>
                     <Label Grid.Row="3" Content="_Zip:" Target="{Binding ElementName=zip}" />
                     <TextBox x:Name="zip" Grid.Row="3" Grid.Column="1" Text="{Binding Contact.Address.Zip}" />
                     <Label Grid.Row="3" Grid.Column="2" Content="Countr_y:" Target="{Binding ElementName=country}" />
@@ -95,19 +95,23 @@ xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="150" />
+                        <ColumnDefinition MinWidth="150" />
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
                     <Label Content="_Office:" Target="{Binding ElementName=office}" />
-                    <TextBox x:Name="office" Grid.Column="1" Text="{Binding Path=Contact.OfficePhone, Converter={StaticResource phoneConverter}}" TextChanged="phoneNumberTextChanged" />
-                    <Label Grid.Row="1" Content="_Cell:" Target="{Binding ElementName=cell}" />
-                    <TextBox x:Name="cell" Grid.Row="1" Grid.Column="1" Text="{Binding Path=Contact.CellPhone, Converter={StaticResource phoneConverter}}" TextChanged="phoneNumberTextChanged" />
-                    <Label Grid.Row="2" Content="_Home:" Target="{Binding ElementName=home}" />
-                    <TextBox x:Name="home" Grid.Row="2" Grid.Column="1" Text="{Binding Path=Contact.HomePhone, Converter={StaticResource phoneConverter}}" TextChanged="phoneNumberTextChanged" />
+                    <TextBox x:Name="office" Grid.Column="1" Text="{Binding Path=Contact.OfficePhone, Converter={StaticResource phoneConverter}}" TextChanged="phoneNumberTextChanged" LostFocus="phoneLostFocus" />
+                    <Label Grid.Row="3" Content="_Cell:" Target="{Binding ElementName=cell}" />
+                    <TextBox x:Name="cell" Grid.Row="3" Grid.Column="1" Text="{Binding Path=Contact.CellPhone, Converter={StaticResource phoneConverter}}" TextChanged="phoneNumberTextChanged" LostFocus="phoneLostFocus"/>
+                    <Label Grid.Row="5" Content="_Home:" Target="{Binding ElementName=home}" />
+                    <TextBox x:Name="home" Grid.Row="5" Grid.Column="1" Text="{Binding Path=Contact.HomePhone, Converter={StaticResource phoneConverter}}" TextChanged="phoneNumberTextChanged" LostFocus="phoneLostFocus"/>
                 </Grid>
             </GroupBox>
             <GroupBox BorderBrush="{StaticResource brownBrush}">
