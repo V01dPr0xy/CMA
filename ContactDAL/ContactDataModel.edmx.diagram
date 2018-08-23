@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="ffd982f972684072aada67d30dbf04e5" Name="Diagram1">
+        <EntityTypeShape EntityType="ContactDataModel.Address" Width="1.5" PointX="5.25" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ContactDataModel.Contact" Width="1.5" PointX="3" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ContactDataModel.Email" Width="1.5" PointX="5.25" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ContactDataModel.Image" Width="1.5" PointX="5.25" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ContactDataModel.PhoneNumber" Width="1.5" PointX="5.25" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ContactDataModel.User" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
+        <AssociationConnector Association="ContactDataModel.FK_Address_Contacts" ManuallyRouted="false" />
+        <AssociationConnector Association="ContactDataModel.FK_Contacts_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="ContactDataModel.FK_Emails_Contacts" ManuallyRouted="false" />
+        <AssociationConnector Association="ContactDataModel.FK_Images_Contacts" ManuallyRouted="false" />
+        <AssociationConnector Association="ContactDataModel.FK_PhoneNumbers_Contacts" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

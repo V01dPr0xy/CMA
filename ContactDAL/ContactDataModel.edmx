@@ -1,0 +1,417 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ContactDataModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Address">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="contactId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="addressLine1" Type="nvarchar" MaxLength="150" />
+          <Property Name="addressLine2" Type="nvarchar" MaxLength="150" />
+          <Property Name="addressCity" Type="nvarchar" MaxLength="75" />
+          <Property Name="addressCountry" Type="nvarchar" MaxLength="75" />
+          <Property Name="addressStateCounty" Type="nvarchar" MaxLength="75" />
+          <Property Name="addressZip" Type="nvarchar" MaxLength="25" />
+        </EntityType>
+        <EntityType Name="Contacts">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="userId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="contactFirstName" Type="nvarchar" MaxLength="75" />
+          <Property Name="contactLastName" Type="nvarchar" MaxLength="75" />
+          <Property Name="contactJobTitle" Type="nvarchar" MaxLength="150" />
+          <Property Name="contactOrganization" Type="nvarchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="Emails">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="contactId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="primaryEmail" Type="nvarchar" MaxLength="256" />
+          <Property Name="secondaryEmail" Type="nvarchar" MaxLength="256" />
+        </EntityType>
+        <EntityType Name="Images">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="contactId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="contactImage" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="PhoneNumbers">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="contactId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="cellNumber" Type="nvarchar" MaxLength="25" />
+          <Property Name="homeNumber" Type="nvarchar" MaxLength="25" />
+          <Property Name="officeNumber" Type="nvarchar" MaxLength="25" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="userName" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="passwordHash" Type="nvarchar(max)" />
+          <Property Name="emailAddress" Type="nvarchar" MaxLength="256" />
+          <Property Name="phoneNumber" Type="nvarchar" MaxLength="256" />
+        </EntityType>
+        <Association Name="FK_Address_Contacts">
+          <End Role="Contacts" Type="Self.Contacts" Multiplicity="1" />
+          <End Role="Address" Type="Self.Address" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Contacts">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Address">
+              <PropertyRef Name="contactId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Contacts_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Contacts" Type="Self.Contacts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Contacts">
+              <PropertyRef Name="userId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Emails_Contacts">
+          <End Role="Contacts" Type="Self.Contacts" Multiplicity="1" />
+          <End Role="Emails" Type="Self.Emails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Contacts">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Emails">
+              <PropertyRef Name="contactId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Images_Contacts">
+          <End Role="Contacts" Type="Self.Contacts" Multiplicity="1" />
+          <End Role="Images" Type="Self.Images" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Contacts">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Images">
+              <PropertyRef Name="contactId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PhoneNumbers_Contacts">
+          <End Role="Contacts" Type="Self.Contacts" Multiplicity="1" />
+          <End Role="PhoneNumbers" Type="Self.PhoneNumbers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Contacts">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="PhoneNumbers">
+              <PropertyRef Name="contactId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ContactDataModelStoreContainer">
+          <EntitySet Name="Address" EntityType="Self.Address" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Contacts" EntityType="Self.Contacts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Emails" EntityType="Self.Emails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Images" EntityType="Self.Images" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PhoneNumbers" EntityType="Self.PhoneNumbers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Address_Contacts" Association="Self.FK_Address_Contacts">
+            <End Role="Contacts" EntitySet="Contacts" />
+            <End Role="Address" EntitySet="Address" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Contacts_Users" Association="Self.FK_Contacts_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Contacts" EntitySet="Contacts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Emails_Contacts" Association="Self.FK_Emails_Contacts">
+            <End Role="Contacts" EntitySet="Contacts" />
+            <End Role="Emails" EntitySet="Emails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Images_Contacts" Association="Self.FK_Images_Contacts">
+            <End Role="Contacts" EntitySet="Contacts" />
+            <End Role="Images" EntitySet="Images" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PhoneNumbers_Contacts" Association="Self.FK_PhoneNumbers_Contacts">
+            <End Role="Contacts" EntitySet="Contacts" />
+            <End Role="PhoneNumbers" EntitySet="PhoneNumbers" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ContactDataModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Address">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Guid" Nullable="false" />
+          <Property Name="contactId" Type="Guid" Nullable="false" />
+          <Property Name="addressLine1" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="addressLine2" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="addressCity" Type="String" MaxLength="75" FixedLength="false" Unicode="true" />
+          <Property Name="addressCountry" Type="String" MaxLength="75" FixedLength="false" Unicode="true" />
+          <Property Name="addressStateCounty" Type="String" MaxLength="75" FixedLength="false" Unicode="true" />
+          <Property Name="addressZip" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Contact" Relationship="Self.FK_Address_Contacts" FromRole="Address" ToRole="Contacts" />
+        </EntityType>
+        <EntityType Name="Contact">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Guid" Nullable="false" />
+          <Property Name="userId" Type="Guid" Nullable="false" />
+          <Property Name="contactFirstName" Type="String" MaxLength="75" FixedLength="false" Unicode="true" />
+          <Property Name="contactLastName" Type="String" MaxLength="75" FixedLength="false" Unicode="true" />
+          <Property Name="contactJobTitle" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="contactOrganization" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Addresses" Relationship="Self.FK_Address_Contacts" FromRole="Contacts" ToRole="Address" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Contacts_Users" FromRole="Contacts" ToRole="Users" />
+          <NavigationProperty Name="Emails" Relationship="Self.FK_Emails_Contacts" FromRole="Contacts" ToRole="Emails" />
+          <NavigationProperty Name="Images" Relationship="Self.FK_Images_Contacts" FromRole="Contacts" ToRole="Images" />
+          <NavigationProperty Name="PhoneNumbers" Relationship="Self.FK_PhoneNumbers_Contacts" FromRole="Contacts" ToRole="PhoneNumbers" />
+        </EntityType>
+        <EntityType Name="Email">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Guid" Nullable="false" />
+          <Property Name="contactId" Type="Guid" Nullable="false" />
+          <Property Name="primaryEmail" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="secondaryEmail" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Contact" Relationship="Self.FK_Emails_Contacts" FromRole="Emails" ToRole="Contacts" />
+        </EntityType>
+        <EntityType Name="Image">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Guid" Nullable="false" />
+          <Property Name="contactId" Type="Guid" Nullable="false" />
+          <Property Name="contactImage" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="Contact" Relationship="Self.FK_Images_Contacts" FromRole="Images" ToRole="Contacts" />
+        </EntityType>
+        <EntityType Name="PhoneNumber">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Guid" Nullable="false" />
+          <Property Name="contactId" Type="Guid" Nullable="false" />
+          <Property Name="cellNumber" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="homeNumber" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="officeNumber" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Contact" Relationship="Self.FK_PhoneNumbers_Contacts" FromRole="PhoneNumbers" ToRole="Contacts" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Guid" Nullable="false" />
+          <Property Name="userName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="passwordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="emailAddress" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="phoneNumber" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Contacts" Relationship="Self.FK_Contacts_Users" FromRole="Users" ToRole="Contacts" />
+        </EntityType>
+        <Association Name="FK_Address_Contacts">
+          <End Role="Contacts" Type="Self.Contact" Multiplicity="1" />
+          <End Role="Address" Type="Self.Address" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Contacts">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Address">
+              <PropertyRef Name="contactId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Contacts_Users">
+          <End Role="Users" Type="Self.User" Multiplicity="1" />
+          <End Role="Contacts" Type="Self.Contact" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Contacts">
+              <PropertyRef Name="userId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Emails_Contacts">
+          <End Role="Contacts" Type="Self.Contact" Multiplicity="1" />
+          <End Role="Emails" Type="Self.Email" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Contacts">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Emails">
+              <PropertyRef Name="contactId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Images_Contacts">
+          <End Role="Contacts" Type="Self.Contact" Multiplicity="1" />
+          <End Role="Images" Type="Self.Image" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Contacts">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Images">
+              <PropertyRef Name="contactId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PhoneNumbers_Contacts">
+          <End Role="Contacts" Type="Self.Contact" Multiplicity="1" />
+          <End Role="PhoneNumbers" Type="Self.PhoneNumber" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Contacts">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="PhoneNumbers">
+              <PropertyRef Name="contactId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ContactEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Addresses" EntityType="Self.Address" />
+          <EntitySet Name="Contacts" EntityType="Self.Contact" />
+          <EntitySet Name="Emails" EntityType="Self.Email" />
+          <EntitySet Name="Images" EntityType="Self.Image" />
+          <EntitySet Name="PhoneNumbers" EntityType="Self.PhoneNumber" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <AssociationSet Name="FK_Address_Contacts" Association="Self.FK_Address_Contacts">
+            <End Role="Contacts" EntitySet="Contacts" />
+            <End Role="Address" EntitySet="Addresses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Contacts_Users" Association="Self.FK_Contacts_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Contacts" EntitySet="Contacts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Emails_Contacts" Association="Self.FK_Emails_Contacts">
+            <End Role="Contacts" EntitySet="Contacts" />
+            <End Role="Emails" EntitySet="Emails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Images_Contacts" Association="Self.FK_Images_Contacts">
+            <End Role="Contacts" EntitySet="Contacts" />
+            <End Role="Images" EntitySet="Images" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PhoneNumbers_Contacts" Association="Self.FK_PhoneNumbers_Contacts">
+            <End Role="Contacts" EntitySet="Contacts" />
+            <End Role="PhoneNumbers" EntitySet="PhoneNumbers" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ContactDataModelStoreContainer" CdmEntityContainer="ContactEntities">
+          <EntitySetMapping Name="Addresses">
+            <EntityTypeMapping TypeName="ContactDataModel.Address">
+              <MappingFragment StoreEntitySet="Address">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="contactId" ColumnName="contactId" />
+                <ScalarProperty Name="addressLine1" ColumnName="addressLine1" />
+                <ScalarProperty Name="addressLine2" ColumnName="addressLine2" />
+                <ScalarProperty Name="addressCity" ColumnName="addressCity" />
+                <ScalarProperty Name="addressCountry" ColumnName="addressCountry" />
+                <ScalarProperty Name="addressStateCounty" ColumnName="addressStateCounty" />
+                <ScalarProperty Name="addressZip" ColumnName="addressZip" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Contacts">
+            <EntityTypeMapping TypeName="ContactDataModel.Contact">
+              <MappingFragment StoreEntitySet="Contacts">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="contactFirstName" ColumnName="contactFirstName" />
+                <ScalarProperty Name="contactLastName" ColumnName="contactLastName" />
+                <ScalarProperty Name="contactJobTitle" ColumnName="contactJobTitle" />
+                <ScalarProperty Name="contactOrganization" ColumnName="contactOrganization" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Emails">
+            <EntityTypeMapping TypeName="ContactDataModel.Email">
+              <MappingFragment StoreEntitySet="Emails">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="contactId" ColumnName="contactId" />
+                <ScalarProperty Name="primaryEmail" ColumnName="primaryEmail" />
+                <ScalarProperty Name="secondaryEmail" ColumnName="secondaryEmail" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Images">
+            <EntityTypeMapping TypeName="ContactDataModel.Image">
+              <MappingFragment StoreEntitySet="Images">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="contactId" ColumnName="contactId" />
+                <ScalarProperty Name="contactImage" ColumnName="contactImage" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PhoneNumbers">
+            <EntityTypeMapping TypeName="ContactDataModel.PhoneNumber">
+              <MappingFragment StoreEntitySet="PhoneNumbers">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="contactId" ColumnName="contactId" />
+                <ScalarProperty Name="cellNumber" ColumnName="cellNumber" />
+                <ScalarProperty Name="homeNumber" ColumnName="homeNumber" />
+                <ScalarProperty Name="officeNumber" ColumnName="officeNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="ContactDataModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="userName" ColumnName="userName" />
+                <ScalarProperty Name="passwordHash" ColumnName="passwordHash" />
+                <ScalarProperty Name="emailAddress" ColumnName="emailAddress" />
+                <ScalarProperty Name="phoneNumber" ColumnName="phoneNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

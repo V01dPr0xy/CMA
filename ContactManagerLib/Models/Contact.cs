@@ -13,14 +13,14 @@ namespace ContactManagerLib.Models
         private string _cellPhone;
         private string _firstName;
         private string _homePhone;
-        private Guid _id = Guid.Empty;
-        private string _imagePath;
+        private Guid _id = Guid.Empty;        
         private string _jobTitle;
         private string _lastName;
         private string _officePhone;
         private string _organization;
         private string _primaryEmail;
         private string _secondaryEmail;
+        private byte[] _image;
 
         public Guid Id
         {
@@ -29,16 +29,6 @@ namespace ContactManagerLib.Models
             {
                 _id = value;
                 OnPropertyChanged("Id");
-            }
-        }
-
-        public string ImagePath
-        {
-            get { return _imagePath; }
-            set
-            {
-                _imagePath = value;
-                OnPropertyChanged("ImagePath");
             }
         }
 
@@ -134,6 +124,16 @@ namespace ContactManagerLib.Models
             {
                 _address = value;
                 OnPropertyChanged("Address");
+            }
+        }
+
+        public byte[] Image
+        {
+            get { return _image; }
+            set
+            {
+                _image = value;
+                OnPropertyChanged("Image");
             }
         }
 

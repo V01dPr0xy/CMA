@@ -4,14 +4,14 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{55993BC9-E1C4-4F6E-B976-1E6A3AC5C1DD}</ProjectGuid>
+    <ProjectGuid>{925F8FC7-5873-4E9F-AD3B-E161B638EE55}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ContactManagerLib</RootNamespace>
-    <AssemblyName>ContactManagerLib</AssemblyName>
+    <RootNamespace>ContactDAL</RootNamespace>
+    <AssemblyName>ContactDAL</AssemblyName>
     <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
+    <Deterministic>true</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -40,6 +40,8 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -48,23 +50,66 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\Address.cs" />
-    <Compile Include="Models\UserData.cs" />
-    <Compile Include="Models\Contact.cs" />
-    <Compile Include="Models\Notifier.cs" />
+    <Compile Include="Address.cs">
+      <DependentUpon>ContactDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Contact.cs">
+      <DependentUpon>ContactDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ContactDataModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ContactDataModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ContactDataModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ContactDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ContactDataModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ContactDataModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Email.cs">
+      <DependentUpon>ContactDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Image.cs">
+      <DependentUpon>ContactDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PhoneNumber.cs">
+      <DependentUpon>ContactDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Service\ContactService.cs" />
-    <Compile Include="Service\IContactService.cs" />
+    <Compile Include="User.cs">
+      <DependentUpon>ContactDataModel.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <EntityDeploy Include="ContactDataModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ContactDataModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="App.Config" />
+    <None Include="ContactDataModel.edmx.diagram">
+      <DependentUpon>ContactDataModel.edmx</DependentUpon>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ContactDAL\ContactDAL.csproj">
-      <Project>{925f8fc7-5873-4e9f-ad3b-e161b638ee55}</Project>
-      <Name>ContactDAL</Name>
-    </ProjectReference>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ContactDataModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ContactDataModel.edmx</DependentUpon>
+      <LastGenOutput>ContactDataModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="ContactDataModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ContactDataModel.edmx</DependentUpon>
+      <LastGenOutput>ContactDataModel.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
