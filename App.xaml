@@ -8,7 +8,7 @@
              >
     <Application.Resources>
         <ResourceDictionary>
-            <ObjectDataProvider x:Key="stateNames" MethodName="GetNames" ObjectType="{x:Type Model:States}" />
+            <!--<ObjectDataProvider x:Key="stateNames" MethodName="GetNames" ObjectType="{x:Type Model:States}" />-->
             <Presenters:PhoneConverter x:Key="phoneConverter"/>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Resources\ColorsAndBrushes.xaml"/>

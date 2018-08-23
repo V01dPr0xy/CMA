@@ -26,9 +26,11 @@
         </StackPanel>
         <Button Content="Login"
                 MaxWidth="150"
-                Margin="0 25 0 5"/>
+                Margin="0 25 0 5"
+                Click="LoginButtonClick"/>
         <Button Content="Register"
                 MaxWidth="150"
-                Margin="0 5 0 0"/>
+                Margin="0 5 0 0"
+                Click="RegisterButtonClick"/>
     </StackPanel>
 </UserControl>

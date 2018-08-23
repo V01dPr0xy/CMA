@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ContactManager.UserControls;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,17 @@ namespace ContactManager
         public LoginWindow()
         {
             InitializeComponent();
+        }
+
+        private void LoginButtonFuction(object sender, RoutedEventArgs e)
+        {
+
+        }
+        private void RegisterButtonFuction(object sender, RoutedEventArgs e)
+        {
+            ControlGrid.Children.RemoveAt(0);
+            RegisterControl registerControl = new RegisterControl();
+            ControlGrid.Children.Add(registerControl);
         }
     }
 }

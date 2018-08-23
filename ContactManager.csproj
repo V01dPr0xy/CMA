@@ -63,7 +63,6 @@
       <DependentUpon>LoginWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model\ContactRepository.cs" />
-    <Compile Include="Model\States.cs" />
     <Compile Include="Presenters\ApplicationPresenter.cs" />
     <Compile Include="Presenters\ContactListPresenter.cs" />
     <Compile Include="Presenters\EditContactPresenter.cs" />

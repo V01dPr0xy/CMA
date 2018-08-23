@@ -22,8 +22,8 @@ namespace ContactManager.Presenters
         public void SelectImage()
         {
             string imagePath = view.AskUserForImagePath();
-            if (!string.IsNullOrEmpty(imagePath))
-                Contact.ImagePath = imagePath;
+            if (!string.IsNullOrEmpty(imagePath)) { }
+                //Contact.ImagePath = imagePath;
         }
         public void Save()
         {

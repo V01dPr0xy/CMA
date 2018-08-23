@@ -23,7 +23,11 @@
                            FontFamily="Trebuchet" />
             </DockPanel>
         </Border>
-        <uc:LoginControl VerticalAlignment="Center"
-                         HorizontalAlignment="Center"/>
+        <Grid x:Name="ControlGrid">            
+            <uc:LoginControl VerticalAlignment="Center"
+                             HorizontalAlignment="Center"
+                             LoginEvent="LoginButtonFuction"
+                             RegisterEvent="RegisterButtonFuction"/>
+        </Grid>
     </DockPanel>
 </Window>
