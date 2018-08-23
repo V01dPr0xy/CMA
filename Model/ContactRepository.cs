@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Windows.Forms;
+using ContactManagerLib.Service;
 
 namespace ContactManager.Model
 {
@@ -12,28 +13,30 @@ namespace ContactManager.Model
     {
         private List<Contact> _contactStore;
         private readonly string _stateFile;
+        private IContactService contactControl;
+        private UserData user;
 
-        public ContactRepository()
+        public ContactRepository(UserData userData)
         {
             _stateFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "ContactManager.state");
-            Deserialize();
+            contactControl = new ContactService();
+            user = userData;
+            RetrieveAllContacts();
         }
 
         public void Save(Contact contact)
         {
-            if (contact.Id == Guid.Empty)
-                contact.Id = Guid.NewGuid();
+            contactControl.UpsertUserContact(contact, user.userId);
 
             if (!_contactStore.Contains(contact))
                 _contactStore.Add(contact);
-
-            Serialize();
         }
 
         public void Delete(Contact contact)
         {
+            contactControl.DeleteUserContact(contact, user.userId);
+
             _contactStore.Remove(contact);
-            Serialize();
         }
 
         public List<Contact> FindByLookup(string lookupName)
@@ -53,26 +56,9 @@ namespace ContactManager.Model
             return new List<Contact>(_contactStore);
         }
 
-        private void Serialize()
+        private void RetrieveAllContacts()
         {
-            using(FileStream stream = File.Open(_stateFile, FileMode.OpenOrCreate))
-            {
-                BinaryFormatter formatter = new BinaryFormatter();
-                formatter.Serialize(stream, _contactStore);
-            }
-        }
-
-        private void Deserialize()
-        {
-            if (File.Exists(_stateFile))
-            {
-                using (FileStream stream = File.Open(_stateFile, FileMode.Open))
-                {
-                    BinaryFormatter formatter = new BinaryFormatter();
-                    _contactStore = (List<Contact>)formatter.Deserialize(stream);
-                }
-            }
-            else _contactStore = new List<Contact>();
+            _contactStore = contactControl.RetrieveAllUserContacts(user.userId);
         }
     }
 }

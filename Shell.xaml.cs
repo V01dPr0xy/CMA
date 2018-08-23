@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using ContactManager.Presenters;
 using ContactManager.Model;
+using ContactManagerLib.Models;
 
 namespace ContactManager
 {
@@ -22,10 +23,10 @@ namespace ContactManager
     /// </summary>
     public partial class Shell : Window
     {
-        public Shell()
+        public Shell(UserData user)
         {
             InitializeComponent();
-            DataContext = new ApplicationPresenter(this, new ContactRepository());
+            DataContext = new ApplicationPresenter(this, new ContactRepository(user));
         }
 
         public void AddTab<T>(PresenterBase<T> presenter)

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ContactManagerLib.Service
 {
-    interface IContactService
+    public interface IContactService
     {
         void UpsertUserContact(Contact contact, Guid userId);
         void DeleteUserContact(Contact contact, Guid userId);
