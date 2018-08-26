@@ -18,7 +18,6 @@ namespace ContactManager.Model
 
         public ContactRepository(UserData userData)
         {
-            _stateFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "ContactManager.state");
             contactControl = new ContactService();
             user = userData;
             RetrieveAllContacts();

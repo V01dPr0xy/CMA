@@ -47,5 +47,25 @@ namespace ContactManager.UserControls
         {
             cancelEvent.Invoke(sender, e);
         }
+
+        private void userNameTextBoxLostFocus(object sender, RoutedEventArgs e)
+        {
+            InvalidUsernameLabel.Content = "";
+            
+            userNameTextBox.Background = new SolidColorBrush(Colors.White);
+        }
+
+        public void InvalidUserName(bool TooShort = false)
+        {
+            if (TooShort)
+            {
+                InvalidUsernameLabel.Content = $"Your username needs to be more than \"{userNameTextBox.Text}\".";
+            }
+            else
+            {
+                InvalidUsernameLabel.Content = "Username has already being taken, please try a different username";
+            }
+            userNameTextBox.Background = new SolidColorBrush(Colors.PaleVioletRed);
+        }
     }
 }

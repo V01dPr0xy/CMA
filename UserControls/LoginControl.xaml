@@ -14,7 +14,6 @@
             <TextBox x:Name="userNameTextBox" Width="400"
                      Margin="8 2 4 6"
                      Text="{Binding Path=userName}"/>
-            <Label x:Name="InvalidUsernameLabel"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal">
             <Label Content="Password:"
@@ -24,9 +23,11 @@
             <TextBox x:Name="passwordTextBox"
                      Width="400"
                      Margin="8 2 4 6"                     
-                     Text="{Binding Path=password}"/>
-            <Label x:Name="InvalidPasswordLabel"/>
+                     Text="{Binding Path=password}"
+                     LostFocus="passwordTextBoxLostFocus"/>
         </StackPanel>
+        <Label x:Name="InvalidUserLabel"
+               Foreground="Red"/>
         <Button Content="Login"
                 MaxWidth="150"
                 Margin="0 25 0 5"

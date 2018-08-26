@@ -16,7 +16,7 @@ namespace ContactManagerLib.Service
             using (ContactEntities db = new ContactEntities())
             {
                 IQueryable<User> query = db.Users.Where(user => user.userName == userData.userName);
-                uniqueUserName = query.ToList().Count == 0;
+                uniqueUserName = query.ToList().Count != 0;
             }
             return uniqueUserName;
         }

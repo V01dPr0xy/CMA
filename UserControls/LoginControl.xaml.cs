@@ -22,6 +22,7 @@ namespace ContactManager.UserControls
     public partial class LoginControl : UserControl
     {
         private RoutedEventHandler registerEvent, loginEvent;
+        private bool invalidLoginAttempt = false;
 
         public LoginControl()
         {
@@ -48,6 +49,33 @@ namespace ContactManager.UserControls
         private void LoginButtonClick(object sender, RoutedEventArgs e)
         {
             loginEvent.Invoke(sender, e);
+        }
+
+        private void passwordTextBoxLostFocus(object sender, RoutedEventArgs e)
+        {
+            if (invalidLoginAttempt)
+            {
+                InvalidUserLabel.Content = "";
+
+                passwordTextBox.Background = new SolidColorBrush(Colors.White);
+                userNameTextBox.Background = new SolidColorBrush(Colors.White);
+
+                invalidLoginAttempt = false;
+            }
+        }
+
+        public void InvalidUser()
+        {
+            if (!invalidLoginAttempt)
+            {
+                InvalidUserLabel.Content = "Username or password was incorrect, look back and try again.";
+                passwordTextBox.Text = "";
+            
+                passwordTextBox.Background = new SolidColorBrush(Colors.PaleVioletRed);
+                userNameTextBox.Background = new SolidColorBrush(Colors.PaleVioletRed);
+
+                invalidLoginAttempt = true;
+            }
         }
     }
 }

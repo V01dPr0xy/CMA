@@ -13,8 +13,10 @@
                    FontFamily="TimesNewRoman"/>
             <TextBox x:Name="userNameTextBox" Width="400"
                      Margin="8 2 4 6"
-                     Text="{Binding Path=userName}"/>
-            <Label x:Name="InvalidUsernameLabel"/>
+                     Text="{Binding Path=userName}"
+                     LostFocus="userNameTextBoxLostFocus"/>
+            <Label x:Name="InvalidUsernameLabel"
+                   Foreground="Red"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal">
             <Label Content="Password:"
