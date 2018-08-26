@@ -13,6 +13,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using ContactManagerLib.Service;
 
 namespace ContactManager
 {
@@ -22,16 +23,21 @@ namespace ContactManager
     public partial class LoginWindow : Window
     {
         private UserData userData;
+        private IContactService contactManager;
         public LoginWindow()
         {
             InitializeComponent();
             userData = new UserData();
+            contactManager = new ContactService();
             DataContext = userData;
         }
 
         private void LoginButtonFuction(object sender, RoutedEventArgs e)
         {
+            userData.password = ContactManagerLib.Security.SecurePasswordHasher.Hash(userData.password);
 
+            contactManager.ValidateUserInformation(userData);
+            userData.userId = contactManager.RetrieveUserId(userData);
         }
         private void LoginRegisterButtonFuction(object sender, RoutedEventArgs e)
         {
@@ -46,9 +52,14 @@ namespace ContactManager
         private void RegisterNewUserButtonFuction(object sender, RoutedEventArgs e)
         {
 
+            contactManager.CheckIfUserNameAlreadyExisits(userData);
+            contactManager.CreateNewUser(userData);
+            CancelNewUserButtonFuction(sender, e);
+            
         }
         private void CancelNewUserButtonFuction(object sender, RoutedEventArgs e)
         {
+            userData = new UserData();
             ControlGrid.Children.RemoveAt(0);
             LoginControl loginControl = new LoginControl();
             loginControl.RegisterEvent = LoginRegisterButtonFuction;

@@ -30,7 +30,7 @@ namespace ContactManagerLib.Service
                     emailAddress = userData.email,
                     phoneNumber = userData.phoneNumber,
                     userName = userData.userName,
-                    passwordHash = userData.password
+                    passwordHash = Security.SecurePasswordHasher.Hash(userData.password)
                 };
                 db.Users.Add(newUser);
                 db.SaveChangesAsync();
@@ -58,7 +58,7 @@ namespace ContactManagerLib.Service
             using (ContactEntities db = new ContactEntities())
             {
                 IQueryable<Guid> query = db.Users
-                    .Where(user => user.passwordHash == userData.password && user.userName == userData.userName)
+                    .Where(user => user.userName == userData.userName && Security.SecurePasswordHasher.Verify(userData.password, user.passwordHash))
                     .Select(user => user.id);
                 userId = query.First();
             }
@@ -157,8 +157,8 @@ namespace ContactManagerLib.Service
             bool validUser = false;
             using (ContactEntities db = new ContactEntities())
             {
-                IQueryable<User> query = db.Users.Where(user => user.userName == userData.userName && user.passwordHash == userData.password);
-                validUser = query.ToList().Count == 1;
+                IQueryable<User> query = db.Users.Where(user => user.userName == userData.userName);
+                validUser = Security.SecurePasswordHasher.Verify(userData.password, query.First().passwordHash);
             }
             return validUser;
         }
