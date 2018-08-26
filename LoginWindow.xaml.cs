@@ -14,6 +14,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using ContactManagerLib.Service;
 
 namespace ContactManager
 {
@@ -24,6 +25,7 @@ namespace ContactManager
     {
         private UserData userData;
         private IContactService contactService;
+
         public LoginWindow()
         {
             InitializeComponent();
@@ -94,6 +96,7 @@ namespace ContactManager
         }
         private void CancelNewUserButtonFuction(object sender, RoutedEventArgs e)
         {
+
             SetUserDataContext();
             ControlGrid.Children.RemoveAt(0);
             LoginControl loginControl = new LoginControl();
