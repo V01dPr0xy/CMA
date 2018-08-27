@@ -67,22 +67,22 @@ namespace ContactManager.Model
             switch(selectedContactField)
             {
                 case ContactFields.NAME:
-                    result = _contactStore.Where(c => c.FirstName.StartsWith(lookup) || c.LastName.StartsWith(lookup)).ToList();
+                    result = _contactStore.Where(c => c.FirstName.Contains(lookup) || c.LastName.Contains(lookup)).ToList();
                     break;
                 case ContactFields.PHONENUMBER:
                     result = SearchByPhoneNumber(lookup);
                     break;
                 case ContactFields.CITY:
-                    result = _contactStore.Where(c => c.Address.City.StartsWith(lookup)).ToList();
+                    result = _contactStore.Where(c => c.Address.City.Contains(lookup)).ToList();
                     break;
                 case ContactFields.JOB:
-                    result = _contactStore.Where(c => c.JobTitle.StartsWith(lookup)).ToList();
+                    result = _contactStore.Where(c => c.JobTitle.Contains(lookup)).ToList();
                     break;
                 case ContactFields.ORGANIZATION:
-                    result = _contactStore.Where(c => c.Organization.StartsWith(lookup)).ToList();
+                    result = _contactStore.Where(c => c.Organization.Contains(lookup)).ToList();
                     break;
                 case ContactFields.EMAIL:
-                    result = _contactStore.Where(c => c.PrimaryEmail.StartsWith(lookup) || c.SecondaryEmail.StartsWith(lookup)).ToList();
+                    result = _contactStore.Where(c => c.PrimaryEmail.Contains(lookup) || c.SecondaryEmail.Contains(lookup)).ToList();
                     break;
             }
 

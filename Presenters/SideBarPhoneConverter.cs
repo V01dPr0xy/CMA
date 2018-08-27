@@ -19,19 +19,21 @@ namespace ContactManager.Presenters
             Contact contact = value as Contact;
             string activePhone = "";
 
-            if (!contact.OfficePhone.Equals(""))
+            if(contact.OfficePhone != null)
             {
-                activePhone = contact.OfficePhone;
+                if (!contact.OfficePhone.Equals(""))
+                {
+                    activePhone = contact.OfficePhone;
+                }
+                else if (!contact.CellPhone.Equals(""))
+                {
+                    activePhone = contact.CellPhone;
+                }
+                else if (!contact.HomePhone.Equals(""))
+                {
+                    activePhone = contact.HomePhone;
+                }
             }
-            else if (!contact.CellPhone.Equals(""))
-            {
-                activePhone = contact.CellPhone;
-            }
-            else if (!contact.HomePhone.Equals(""))
-            {
-                activePhone = contact.HomePhone;
-            }
-
 
             string result = activePhone;
 
