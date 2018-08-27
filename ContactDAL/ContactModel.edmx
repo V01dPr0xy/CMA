@@ -4,12 +4,12 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ContactDataModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="ContactModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Address">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="id" Type="uniqueidentifier" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="contactId" Type="uniqueidentifier" Nullable="false" />
           <Property Name="addressLine1" Type="nvarchar" MaxLength="150" />
           <Property Name="addressLine2" Type="nvarchar" MaxLength="150" />
@@ -22,7 +22,7 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="id" Type="uniqueidentifier" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="userId" Type="uniqueidentifier" Nullable="false" />
           <Property Name="contactFirstName" Type="nvarchar" MaxLength="75" />
           <Property Name="contactLastName" Type="nvarchar" MaxLength="75" />
@@ -33,7 +33,7 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="id" Type="uniqueidentifier" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="contactId" Type="uniqueidentifier" Nullable="false" />
           <Property Name="primaryEmail" Type="nvarchar" MaxLength="256" />
           <Property Name="secondaryEmail" Type="nvarchar" MaxLength="256" />
@@ -42,7 +42,7 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="id" Type="uniqueidentifier" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="contactId" Type="uniqueidentifier" Nullable="false" />
           <Property Name="contactImage" Type="varbinary(max)" />
         </EntityType>
@@ -50,7 +50,7 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="id" Type="uniqueidentifier" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="contactId" Type="uniqueidentifier" Nullable="false" />
           <Property Name="cellNumber" Type="nvarchar" MaxLength="25" />
           <Property Name="homeNumber" Type="nvarchar" MaxLength="25" />
@@ -60,7 +60,7 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="id" Type="uniqueidentifier" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="userName" Type="nvarchar" MaxLength="256" Nullable="false" />
           <Property Name="passwordHash" Type="nvarchar(max)" />
           <Property Name="emailAddress" Type="nvarchar" MaxLength="256" />
@@ -126,7 +126,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="ContactDataModelStoreContainer">
+        <EntityContainer Name="ContactModelStoreContainer">
           <EntitySet Name="Address" EntityType="Self.Address" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Contacts" EntityType="Self.Contacts" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Emails" EntityType="Self.Emails" Schema="dbo" store:Type="Tables" />
@@ -158,12 +158,12 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="ContactDataModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="ContactModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Address">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="Guid" Nullable="false" />
+          <Property Name="id" Type="Guid" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="contactId" Type="Guid" Nullable="false" />
           <Property Name="addressLine1" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
           <Property Name="addressLine2" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
@@ -177,7 +177,7 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="Guid" Nullable="false" />
+          <Property Name="id" Type="Guid" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="userId" Type="Guid" Nullable="false" />
           <Property Name="contactFirstName" Type="String" MaxLength="75" FixedLength="false" Unicode="true" />
           <Property Name="contactLastName" Type="String" MaxLength="75" FixedLength="false" Unicode="true" />
@@ -193,7 +193,7 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="Guid" Nullable="false" />
+          <Property Name="id" Type="Guid" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="contactId" Type="Guid" Nullable="false" />
           <Property Name="primaryEmail" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
           <Property Name="secondaryEmail" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
@@ -203,7 +203,7 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="Guid" Nullable="false" />
+          <Property Name="id" Type="Guid" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="contactId" Type="Guid" Nullable="false" />
           <Property Name="contactImage" Type="Binary" MaxLength="Max" FixedLength="false" />
           <NavigationProperty Name="Contact" Relationship="Self.FK_Images_Contacts" FromRole="Images" ToRole="Contacts" />
@@ -212,7 +212,7 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="Guid" Nullable="false" />
+          <Property Name="id" Type="Guid" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="contactId" Type="Guid" Nullable="false" />
           <Property Name="cellNumber" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
           <Property Name="homeNumber" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
@@ -223,7 +223,7 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="Guid" Nullable="false" />
+          <Property Name="id" Type="Guid" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="userName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="passwordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="emailAddress" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
@@ -323,9 +323,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="ContactDataModelStoreContainer" CdmEntityContainer="ContactEntities">
+        <EntityContainerMapping StorageEntityContainer="ContactModelStoreContainer" CdmEntityContainer="ContactEntities">
           <EntitySetMapping Name="Addresses">
-            <EntityTypeMapping TypeName="ContactDataModel.Address">
+            <EntityTypeMapping TypeName="ContactModel.Address">
               <MappingFragment StoreEntitySet="Address">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="contactId" ColumnName="contactId" />
@@ -339,7 +339,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Contacts">
-            <EntityTypeMapping TypeName="ContactDataModel.Contact">
+            <EntityTypeMapping TypeName="ContactModel.Contact">
               <MappingFragment StoreEntitySet="Contacts">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="userId" ColumnName="userId" />
@@ -351,7 +351,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Emails">
-            <EntityTypeMapping TypeName="ContactDataModel.Email">
+            <EntityTypeMapping TypeName="ContactModel.Email">
               <MappingFragment StoreEntitySet="Emails">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="contactId" ColumnName="contactId" />
@@ -361,7 +361,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Images">
-            <EntityTypeMapping TypeName="ContactDataModel.Image">
+            <EntityTypeMapping TypeName="ContactModel.Image">
               <MappingFragment StoreEntitySet="Images">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="contactId" ColumnName="contactId" />
@@ -370,7 +370,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="PhoneNumbers">
-            <EntityTypeMapping TypeName="ContactDataModel.PhoneNumber">
+            <EntityTypeMapping TypeName="ContactModel.PhoneNumber">
               <MappingFragment StoreEntitySet="PhoneNumbers">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="contactId" ColumnName="contactId" />
@@ -381,7 +381,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Users">
-            <EntityTypeMapping TypeName="ContactDataModel.User">
+            <EntityTypeMapping TypeName="ContactModel.User">
               <MappingFragment StoreEntitySet="Users">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="userName" ColumnName="userName" />

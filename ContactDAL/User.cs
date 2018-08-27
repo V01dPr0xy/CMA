@@ -11,7 +11,8 @@ namespace ContactDAL
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations.Schema;
+
     public partial class User
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -19,7 +20,7 @@ namespace ContactDAL
         {
             this.Contacts = new HashSet<Contact>();
         }
-    
+        
         public System.Guid id { get; set; }
         public string userName { get; set; }
         public string passwordHash { get; set; }

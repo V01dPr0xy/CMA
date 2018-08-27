@@ -33,7 +33,7 @@ namespace ContactManagerLib.Service
                     passwordHash = Security.SecurePasswordHasher.Hash(userData.password)
                 };
                 db.Users.Add(newUser);
-                db.SaveChangesAsync();
+                db.SaveChanges();
             }
         }
 
@@ -48,7 +48,7 @@ namespace ContactManagerLib.Service
                 ContactDAL.Contact contactData = contactQuery.First();
 
                 db.Contacts.Remove(contactData);
-                db.SaveChangesAsync();
+                db.SaveChanges();
             }
         }
 
@@ -58,7 +58,7 @@ namespace ContactManagerLib.Service
             using (ContactEntities db = new ContactEntities())
             {
                 IQueryable<Guid> query = db.Users
-                    .Where(user => user.userName == userData.userName && Security.SecurePasswordHasher.Verify(userData.password, user.passwordHash))
+                    .Where(user => user.userName == userData.userName)
                     .Select(user => user.id);
                 userId = query.First();
             }
@@ -123,7 +123,7 @@ namespace ContactManagerLib.Service
                     db.PhoneNumbers.Add(newPhoneNumber);
                     db.Addresses.Add(newAddress);
 
-                    db.SaveChangesAsync();
+                    db.SaveChanges();
 
                     contact.Id = Guid.Parse(newContact.id.ToString());
                 }
@@ -149,7 +149,7 @@ namespace ContactManagerLib.Service
                     contactData.Addresses.First().addressStateCounty = contact.Address.State;
                     contactData.Addresses.First().addressZip = contact.Address.Zip;
 
-                    db.SaveChangesAsync();
+                    db.SaveChanges();
                 }
             }
             return contact;
@@ -161,7 +161,10 @@ namespace ContactManagerLib.Service
             using (ContactEntities db = new ContactEntities())
             {
                 IQueryable<User> query = db.Users.Where(user => user.userName == userData.userName);
-                validUser = Security.SecurePasswordHasher.Verify(userData.password, query.First().passwordHash);
+                if (query.ToList().Count != 0)
+                {
+                    validUser = Security.SecurePasswordHasher.Verify(userData.password, query.First().passwordHash);
+                }
             }
             return validUser;
         }
