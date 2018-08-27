@@ -25,7 +25,7 @@ namespace ContactManager.Model
 
         public void Save(Contact contact)
         {
-            contactControl.UpsertUserContact(contact, user.userId);
+            contact = contactControl.UpsertUserContact(contact, user.userId);
 
             if (!_contactStore.Contains(contact))
                 _contactStore.Add(contact);

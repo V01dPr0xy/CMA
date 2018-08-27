@@ -43,14 +43,14 @@ namespace ContactManager
                     tempControl = child as LoginControl;
                 }
             }
-            //if (contactService.ValidateUserInformation(userData))
-            //{
-            //    userData.userId = contactService.RetrieveUserId(userData);
-            //}
-            //else
-            //{
-            //    tempControl.InvalidUser();
-            //}
+            if (contactService.ValidateUserInformation(userData))
+            {
+                userData.userId = contactService.RetrieveUserId(userData);
+            }
+            else
+            {
+                tempControl.InvalidUser();
+            }
             Shell newWindow = new Shell(userData);
             Application.Current.MainWindow = newWindow;
             Close();

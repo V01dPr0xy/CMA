@@ -65,7 +65,7 @@ namespace ContactManagerLib.Service
             return userId;
         }
 
-        public void UpsertUserContact(Models.Contact contact, Guid userId)
+        public Models.Contact UpsertUserContact(Models.Contact contact, Guid userId)
         {
             using (ContactEntities db = new ContactEntities())
             {
@@ -124,6 +124,8 @@ namespace ContactManagerLib.Service
                     db.Addresses.Add(newAddress);
 
                     db.SaveChangesAsync();
+
+                    contact.Id = Guid.Parse(newContact.id.ToString());
                 }
                 else
                 {
@@ -150,6 +152,7 @@ namespace ContactManagerLib.Service
                     db.SaveChangesAsync();
                 }
             }
+            return contact;
         }
 
         public bool ValidateUserInformation(UserData userData)

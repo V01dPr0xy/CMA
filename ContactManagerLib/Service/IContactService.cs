@@ -9,7 +9,7 @@ namespace ContactManagerLib.Service
 {
     public interface IContactService
     {
-        void UpsertUserContact(Contact contact, Guid userId);
+        Contact UpsertUserContact(Contact contact, Guid userId);
         void DeleteUserContact(Contact contact, Guid userId);
         List<Contact> RetrieveAllUserContacts(Guid userid);
         bool ValidateUserInformation(UserData userData);
