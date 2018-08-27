@@ -1,6 +1,7 @@
 ﻿using ContactManager.Model;
 using ContactManager.Views;
 using ContactManagerLib.Models;
+using System.Drawing;
 
 namespace ContactManager.Presenters
 {
@@ -22,8 +23,11 @@ namespace ContactManager.Presenters
         public void SelectImage()
         {
             string imagePath = view.AskUserForImagePath();
-            if (!string.IsNullOrEmpty(imagePath)) { }
-                //Contact.ImagePath = imagePath;
+
+            ImageConverter imageConverter = new ImageConverter();
+            Bitmap bitmap = new Bitmap(imagePath);
+            byte[] imageBytes = (byte[])imageConverter.ConvertTo(bitmap, typeof(byte[]));
+            Contact.Image = imageBytes;
         }
         public void Save()
         {

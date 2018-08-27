@@ -96,7 +96,6 @@ namespace ContactManager
         }
         private void CancelNewUserButtonFuction(object sender, RoutedEventArgs e)
         {
-
             SetUserDataContext();
             ControlGrid.Children.RemoveAt(0);
             LoginControl loginControl = new LoginControl();

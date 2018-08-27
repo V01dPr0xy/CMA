@@ -64,6 +64,7 @@
     </Compile>
     <Compile Include="Model\ContactRepository.cs" />
     <Compile Include="Presenters\ApplicationPresenter.cs" />
+    <Compile Include="Presenters\ByteArrayToImageConverter.cs" />
     <Compile Include="Presenters\ContactListPresenter.cs" />
     <Compile Include="Presenters\EditContactPresenter.cs" />
     <Compile Include="Presenters\PhoneConverter.cs" />
