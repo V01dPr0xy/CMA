@@ -10,6 +10,15 @@
         <DockPanel LastChildFill="False">
             <TextBlock DockPanel.Dock="Left" Text="Contact Manager" FontWeight="Bold" Foreground="White" VerticalAlignment="Center" FontSize="22" FontFamily="Trebuchet" />
             <TextBox x:Name="searchText" DockPanel.Dock="Right" Width="150" Background="White" TextChanged="SearchText_Changed" />
+            <ComboBox x:Name="searchType" DockPanel.Dock="Right" Width="150">
+                <ComboBoxItem Name="st_0" IsSelected="True">Select item</ComboBoxItem>
+                <ComboBoxItem Name="st_1">Name</ComboBoxItem>
+                <ComboBoxItem Name="st_2">Organization</ComboBoxItem>
+                <ComboBoxItem Name="st_3">Job Title</ComboBoxItem>
+                <ComboBoxItem Name="st_4">City</ComboBoxItem>
+                <ComboBoxItem Name="st_5">Phone Number</ComboBoxItem>
+                <ComboBoxItem Name="st_6">Email</ComboBoxItem>
+            </ComboBox>
             <Label DockPanel.Dock="Right" Content="Search:" FontWeight="Bold" Foreground="White" />
         </DockPanel>
     </Border>

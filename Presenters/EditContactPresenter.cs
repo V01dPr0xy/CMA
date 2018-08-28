@@ -31,7 +31,10 @@ namespace ContactManager.Presenters
         }
         public void Save()
         {
-            _applicationPresenter.SaveContact(Contact);
+            Contact temp = Contact;
+            Validation.validateContact(temp);
+            
+            _applicationPresenter.SaveContact(temp);
         }
         public void Delete()
         {

@@ -47,9 +47,20 @@ namespace ContactManager.UserControls
 
         private void OpenContact_Click(object sender, RoutedEventArgs e)
         {
+
             Button button = e.OriginalSource as Button;
             if (button != null)
                 Presenter.OpenContact(button.DataContext as Contact);
+        }
+
+        private void Grid_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            Contact contact = ((Grid)sender).DataContext as Contact;
+            if(contact !=null)
+                Presenter.OpenContact(contact);
+            //Button button = e.OriginalSource as Button;
+            //if (button != null)
+            //    Presenter.OpenContact(button.DataContext as Contact);
         }
     }
 }

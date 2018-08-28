@@ -62,6 +62,7 @@ namespace ContactManager.UserControls
 
                 invalidLoginAttempt = false;
             }
+            (DataContext as UserData).password = passwordTextBox.Password;
         }
 
         public void InvalidUser()
@@ -69,7 +70,7 @@ namespace ContactManager.UserControls
             if (!invalidLoginAttempt)
             {
                 InvalidUserLabel.Content = "Username or password was incorrect, look back and try again.";
-                passwordTextBox.Text = "";
+                passwordTextBox.Password = "";
             
                 passwordTextBox.Background = new SolidColorBrush(Colors.PaleVioletRed);
                 userNameTextBox.Background = new SolidColorBrush(Colors.PaleVioletRed);

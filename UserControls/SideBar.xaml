@@ -26,7 +26,7 @@
                         <Grid Margin="2">
                             <Border Margin="2 2 0 0" CornerRadius="4" Background="Gray" Opacity=".5" />
                             <Border BorderBrush="{StaticResource redBrush}" BorderThickness="2" CornerRadius="4" Background="White" Margin="0 0 2 2" Padding="3">
-                                <Grid>
+                                <Grid MouseUp="Grid_MouseUp">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="Auto" />
                                         <ColumnDefinition />
@@ -36,11 +36,11 @@
                                         <RowDefinition />
                                         <RowDefinition />
                                     </Grid.RowDefinitions>
-                                    <TextBlock Grid.ColumnSpan="2" FontWeight="Bold" Text="{Binding LookupName}" />
-                                    <TextBlock Grid.Row="1" Text=" Office: " />
-                                    <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Path=OfficePhone, Converter={StaticResource phoneConverter}}"/>
+                                    <TextBlock Grid.ColumnSpan="2" FontWeight="Bold" Text="{Binding FullName}" />
+                                    <TextBlock Grid.Row="1" Text=" Primary Phone: " />
+                                    <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Path=GetContact, Converter={StaticResource sideBarPhoneConverter}}"/>
                                     <TextBlock Grid.Row="2" Text=" Email: " />
-                                    <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding PrimaryEmail}" />
+                                    <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding Path=GetContact, Converter={StaticResource SideBarEmailConverter}}" />
                                 </Grid>
                             </Border>
                             <Button Style="{StaticResource openButton}" />

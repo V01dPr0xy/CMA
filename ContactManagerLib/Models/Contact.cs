@@ -6,21 +6,36 @@ using System.Threading.Tasks;
 
 namespace ContactManagerLib.Models
 {
-    [Serializable]
     public class Contact : Notifier
     {
+        //GUID
+        private Guid _id = Guid.Empty;
+
+        //Address
         private Address _address = new Address();
+
+        //Phone numbers
         private string _cellPhone;
-        private string _firstName;
         private string _homePhone;
-        private Guid _id = Guid.Empty;        
-        private string _jobTitle;
-        private string _lastName;
         private string _officePhone;
+
+        //Name
+        private string _firstName;
+        private string _lastName;
+
+        //Job and organization
+        private string _jobTitle;
         private string _organization;
+
+        //Emails
         private string _primaryEmail;
         private string _secondaryEmail;
         private byte[] _image;
+
+        public Contact GetContact
+        {
+            get { return this; }
+        }
 
         public Guid Id
         {
@@ -31,7 +46,6 @@ namespace ContactManagerLib.Models
                 OnPropertyChanged("Id");
             }
         }
-
         public string FirstName
         {
             get { return _firstName; }
@@ -79,6 +93,7 @@ namespace ContactManagerLib.Models
             {
                 _officePhone = value;
                 OnPropertyChanged("OfficePhone");
+                OnPropertyChanged("GetContact");
             }
         }
         public string CellPhone
@@ -88,6 +103,7 @@ namespace ContactManagerLib.Models
             {
                 _cellPhone = value;
                 OnPropertyChanged("CellPhone");
+                OnPropertyChanged("GetContact");
             }
         }
         public string HomePhone
@@ -97,6 +113,7 @@ namespace ContactManagerLib.Models
             {
                 _homePhone = value;
                 OnPropertyChanged("HomePhone");
+                OnPropertyChanged("GetContact");
             }
         }
         public string PrimaryEmail
@@ -106,6 +123,7 @@ namespace ContactManagerLib.Models
             {
                 _primaryEmail = value;
                 OnPropertyChanged("PrimaryEmail");
+                OnPropertyChanged("GetContact");
             }
         }
         public string SecondaryEmail
@@ -115,6 +133,7 @@ namespace ContactManagerLib.Models
             {
                 _secondaryEmail = value;
                 OnPropertyChanged("SecondaryEmail");
+                OnPropertyChanged("GetContact");
             }
         }
         public Address Address
@@ -135,16 +154,11 @@ namespace ContactManagerLib.Models
                 _image = value;
                 OnPropertyChanged("Image");
             }
+
         }
 
-        public string LookupName
-        {
+        public string FullName {
             get { return string.Format("{0}, {1}", _lastName, _firstName); }
-        }
-
-        public override string ToString()
-        {
-            return LookupName;
         }
 
         public override bool Equals(object obj)

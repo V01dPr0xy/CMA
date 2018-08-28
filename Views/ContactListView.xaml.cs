@@ -20,6 +20,7 @@ namespace ContactManager.Views
         {
             get { return DataContext as ContactListPresenter; }
         }
+
         private void Close_Click(object sender, RoutedEventArgs e)
         {
             Presenter.Close();

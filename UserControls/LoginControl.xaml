@@ -20,11 +20,11 @@
                    Margin="4 2 8 6"
                    FontSize="12"
                    FontFamily="TimesNewRoman"/>
-            <TextBox x:Name="passwordTextBox"
-                     Width="400"
-                     Margin="8 2 4 6"                     
-                     Text="{Binding Path=password}"
-                     LostFocus="passwordTextBoxLostFocus"/>
+            <PasswordBox x:Name="passwordTextBox"
+                         Width="400"
+                         Margin="8 2 4 6"  
+                         PasswordChar ="*"                    
+                         LostFocus="passwordTextBoxLostFocus"/>
         </StackPanel>
         <Label x:Name="InvalidUserLabel"
                Foreground="Red"/>

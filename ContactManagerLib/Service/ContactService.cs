@@ -47,6 +47,10 @@ namespace ContactManagerLib.Service
                 IQueryable<ContactDAL.Contact> contactQuery = db.Contacts.Where(contactLocation => contactLocation.userId == userData.id && contactLocation.id == contact.Id);
                 ContactDAL.Contact contactData = contactQuery.First();
 
+                db.Addresses.RemoveRange(contactData.Addresses);
+                db.Emails.RemoveRange(contactData.Emails);
+                db.Images.RemoveRange(contactData.Images);
+                db.PhoneNumbers.RemoveRange(contactData.PhoneNumbers);
                 db.Contacts.Remove(contactData);
                 db.SaveChanges();
             }
